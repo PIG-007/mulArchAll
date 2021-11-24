@@ -1,9 +1,9 @@
 #! /bin/bash
 
 if [ $# != 6 ] ; then
-echo "Usage:		gdbMulArch [binary] [arch] [version] [localPort] [_libc_start_got_offset] [gdb]"
-echo "Example:		gdbMulArch binary arm 2.27 12345 0x12098 pwndbg"
-echo "Example:		gdbMulArch binary mipsel 2.29 12345 0x12098 gef"
+echo "Usage:		gdbMulArchPie [binary] [arch] [version] [localPort] [_libc_start_got_offset] [gdb]"
+echo "Example:		gdbMulArchPie binary arm 2.27 12345 0x12098 pwndbg"
+echo "Example:		gdbMulArchPie binary mipsel 2.29 12345 0x12098 gef"
 exit 1;
 fi
 
