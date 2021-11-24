@@ -35,4 +35,6 @@ apt-get -y install make
 apt-get -y install build-essential
 apt-get -y install libgdbm-dev libc6-dev
 
+apt-get -y install qemu
+chmod a+x ~/mulArchAll/CMD/*
 cp ~/mulArchAll/CMD/* /usr/bin/

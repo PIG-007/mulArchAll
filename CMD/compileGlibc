@@ -33,7 +33,7 @@ fi
 
 
 
-git clone https://sourceware.org/git/glibc.git glibcAll
+git clone https://mirrors.tuna.tsinghua.edu.cn/git/glibc.git glibcAll
 cd ~/glibcAll/
 git checkout release/${version}/master
 mkdir -p ~/glibc/${version}/${arch}
