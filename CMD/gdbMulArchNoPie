@@ -1,0 +1,51 @@
+#! /bin/bash
+
+if [ $# != 4 ] ; then
+echo "Usage:		gdbMulArch [binary] [arch] [version] [localPort]"
+echo "Example:		gdbMulArch binary arm 2.27 12345"
+echo "Example:		gdbMulArch binary mipsel 2.29 12345"
+exit 1;
+fi
+
+
+binary=$1
+arch=$2
+version=$3
+localPort=$4
+
+
+if [ ${arch} == "arm" ]; then
+	archGDB="qemu-arm"
+	linkLibrary="/home/hacker/glibc/${version}/${arch}/"
+elif [ ${arch} == "aarch64" ]; then
+	archGDB="qemu-aarch64"
+	linkLibrary="/home/hacker/glibc/${version}/${arch}/"
+elif [ ${arch} == "mipsel" ]; then
+	archGDB="qemu-mipsel"
+	linkLibrary="/home/hacker/glibc/${version}/${arch}/"
+elif [ ${arch} == "mips" ]; then
+	archGDB="qemu-mips"
+	linkLibrary="/home/hacker/glibc/${version}/${arch}/"
+elif [ ${arch} == "mips64" ]; then
+	archGDB="qemu-mips64"
+	linkLibrary="/home/hacker/glibc/${version}/${arch}/"
+elif [ ${arch} == "mips64el" ]; then
+	archGDB="qemu-mips64el"
+	linkLibrary="/home/hacker/glibc/${version}/${arch}/"
+else
+	echo "No such Arch!"
+	exit 1;
+fi
+
+
+if [[ ${arch} =~ "mips" ]] ; then
+	#mips is subStr of arch
+	cp ~/mulArchAll/gdbinit/gdbinitGEF ~/.gdbinit
+else
+	cp ~/mulArchAll/gdbinit/gdbinitPwndbg ~/.gdbinit
+fi
+
+gnome-terminal -- bash -c "gdb-multiarch -q ${binary} --eval-command='target remote localhost:${localPort}'"
+${archGDB} -L ${linkLibrary} -g ${localPort} ${binary}
+
+cp ~/mulArchAll/gdbinit/gdbinitPwndbg ~/.gdbinit

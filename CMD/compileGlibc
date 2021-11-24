@@ -1,0 +1,56 @@
+#! /bin/bash
+
+if [ $# != 2 ] ; then
+echo "Usage:		compileGlibc [version] [arch]"
+echo "Example:		compileGlibc 2.27 arm"
+exit 1;
+fi
+
+
+version=$1
+arch=$2
+
+if [ ${arch} == 'arm' ] ; then
+	compiler="arm-linux-gnueabi"
+elif [ ${arch} == 'aarch' ]; then
+	compiler="aarch64-linux-gnu"
+elif [ ${arch} == '64' ] ; then
+	compiler="x86_64-linux-gnu"
+elif [ ${arch} == '32' ] ; then
+	compiler="i686-linux-gnu"
+elif [ ${arch} == 'mips' ] ; then
+	compiler="mips-linux-gnu"
+elif [ ${arch} == 'mipsel' ] ; then
+	compiler="mipsel-linux-gnu"
+elif [ ${arch} == 'mips64' ] ; then
+	compiler="mips64-linux-gnuabi64"
+elif [ ${arch} == 'mips64el' ] ; then
+	compiler="mips64el-linux-gnuabi64"
+else
+	echo "No such arch!";
+	exit 1;
+fi
+
+
+
+git clone https://sourceware.org/git/glibc.git glibcAll
+cd ~/glibcAll/
+git checkout release/${version}/master
+mkdir -p ~/glibc/${version}/${arch}
+mkdir -p ~/glibc-src/glibc-${version}_${arch}_build
+cd ~/glibc/
+glibcPath=${PWD}
+cd ~/glibc-src/glibc-${version}_${arch}_build
+~/glibcAll/configure --prefix=$glibcPath/${version}/${arch} \
+	--host=${compiler} --build=$(~/glibcAll/scripts/config.guess) --enable-debug=yes \
+		--disable-werror
+make -j6
+make install
+cd ~/glibc-src/
+rm -rf glibc-${version}_${arch}_build
+
+if [[ ${arch} =~ "mips64" ]] ; then
+	#mips64 is subStr of arch
+	mkdir -p mkdir -p ~/glibc/${version}/${arch}/lib64
+	cp ~/glibc/${version}/${arch}/lib/ld.so.1 ~/glibc/${version}/${arch}/lib64/ld.so.1
+fi

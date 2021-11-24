@@ -1,0 +1,40 @@
+#! /bin/sh
+
+if [ $# != 3 ] ; then
+echo "Usage:changeLibc [pwnfile] [arch] [libcVersion]"
+echo "Example:changeLibc note 64 2.23"
+exit 1;
+fi
+
+
+binary=$1
+arch=$2
+version=$3
+linkLibrary="/home/hacker/glibc/${version}/${arch}"
+
+
+if [ ${arch} == "arm" ]; then
+	interpreter="ld-linux.so.3"
+elif [ ${arch} == "aarch64" ]; then
+	interpreter="ld-linux-aarch64.so.1"
+elif [ ${arch} == "32" ]; then
+	interpreter="ld-linux.so.2"
+elif [ ${arch} == "64" ]; then
+	interpreter="ld-linux-x86-64.so.2"
+elif [ ${arch} == "mipsel" ]; then
+	interpreter="ld.so.1"
+elif [ ${arch} == "mips" ]; then
+	interpreter="ld.so.1"
+elif [ ${arch} == "mips64" ]; then
+	interpreter="ld.so.1"
+elif [ ${arch} == "mips64el" ]; then
+	interpreter="ld.so.1"
+else
+	echo "No such Arch!"
+	exit 1;
+fi
+
+
+
+chmod a+x ${binary}
+patchelf --set-interpreter ${linkLibrary}/lib/${interpreter} --set-rpath ${linkLibrary}/lib/ ${binary}
