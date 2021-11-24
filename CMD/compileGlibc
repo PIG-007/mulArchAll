@@ -12,7 +12,7 @@ arch=$2
 
 if [ ${arch} == 'arm' ] ; then
 	compiler="arm-linux-gnueabi"
-elif [ ${arch} == 'aarch' ]; then
+elif [ ${arch} == 'aarch64' ]; then
 	compiler="aarch64-linux-gnu"
 elif [ ${arch} == '64' ] ; then
 	compiler="x86_64-linux-gnu"
@@ -33,7 +33,7 @@ fi
 
 
 
-git clone https://mirrors.tuna.tsinghua.edu.cn/git/glibc.git glibcAll
+git clone http://mirrors.tuna.tsinghua.edu.cn/git/glibc.git glibcAll
 cd ~/glibcAll/
 git checkout release/${version}/master
 mkdir -p ~/glibc/${version}/${arch}
