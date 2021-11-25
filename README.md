@@ -2,7 +2,11 @@
 
 Language: [English](https://github.com/PIG-007/mulArchAll/blob/master/README_en-US.md) | [中文简体](https://github.com/PIG-007/mulArchAll/blob/master/README.md)
 
-建立PWN的异构环境，同时解决异构环境下关于qemu和pie不好调试问题。
+建立PWN的异构环境，同时解决异构环境下关于qemu和pie不好调试问题，加载所有符号表，可以使用堆命令，heap,bins等，方便做题。
+
+## 前置安装
+
+需要安装pwndbg和gef。
 
 ## 安装
 

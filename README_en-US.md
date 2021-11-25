@@ -2,7 +2,11 @@
 
 Language: [English](https://github.com/PIG-007/mulArchAll/blob/master/README_en-US.md) | [中文简体](https://github.com/PIG-007/mulArchAll/blob/master/README.md)
 
-Establish a heterogeneous environment of PWN, and solve the problem of poor debugging of qemu and pie in a heterogeneous environment.
+Establish a heterogeneous PWN environment, and solve the problem of poor debugging of qemu and pie in a heterogeneous environment. Load all symbol tables, and use heap commands, heap, bins, etc., to facilitate problem solving.
+
+## Pre-installation
+
+Need to install pwndbg and gef.
 
 ## Install
 
