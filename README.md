@@ -19,6 +19,12 @@ chmod a+x setup.sh
 ./setup.sh
 ```
 
+### 编译环境
+
+安装之后直接运行对应命令即可
+
+![image-20211125155049704](https://pig-007.oss-cn-beijing.aliyuncs.com/img/20211125155049.png)
+
 ### 说明
 
 这里需要说一下，由于之后的需要，我直接把gdb启动脚本`.gdbinit`给覆盖了，覆盖文件从`~/mulArchAll/gdbinit/`中获取

@@ -19,6 +19,12 @@ chmod a+x setup.sh
 ./setup.sh
 ```
 
+### Compiler Environment
+
+Just run the corresponding command directly after installation
+
+![image-20211125155049704](https://pig-007.oss-cn-beijing.aliyuncs.com/img/20211125155148.png)
+
 ### Illustrate
 
 I need to talk about it here. Due to future needs, I directly overwrite the gdb startup script `.gdbinit`, and the coverage file is obtained from `~/mulArchAll/gdbinit/`.
