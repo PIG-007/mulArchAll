@@ -40,3 +40,4 @@ apt-get -y install gdbserver
 
 chmod a+x ~/mulArchAll/CMD/*
 cp ~/mulArchAll/CMD/* /usr/bin/
+cp ~/mulArchAll/gdbinit/gdbinitPwndbg ~/.gdbinit
